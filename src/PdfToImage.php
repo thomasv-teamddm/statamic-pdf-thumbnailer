@@ -5,6 +5,7 @@ namespace InsightMedia\StatamicPdfThumbnailer;
 use Spatie\PdfToImage\Pdf;
 use Statamic\Assets\Asset;
 use Statamic\Assets\AssetContainer;
+use Statamic\Facades\AssetContainer as AssetContainerFacade;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PdfToImage
