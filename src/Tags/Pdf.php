@@ -11,6 +11,7 @@ class Pdf extends Tags
 
     public function index()
     {
-        return Asset::find($this->params->get('to'))->url();
+        $asset = Asset::find($this->params->get('to'));
+        return $asset?->url();
     }
 }

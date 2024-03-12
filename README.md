@@ -7,7 +7,7 @@
 # Statamic Pdf Thumbnailer
 
 > Statamic Pdf Thumbnailer automatically generates an image per uploaded PDF asset.
-> 
+>
 > Particularly useful when you want to show image previews when linking to PDF files.
 
 ## Features
@@ -29,6 +29,15 @@ You can search for this addon in the `Tools > Addons` section of the Statamic co
 composer require insight-media/statamic-pdf-thumbnailer
 ```
 
+## Configuration
+There is currently one configuration. If you want to save the thumbnail in a different container then the one the asset is in.
+
+If you want to update any of the defaults, start by publishing your configuration file:
+
+```bash
+php artisan vendor:publish --provider=DdmInteractive\\StatamicPdfThumbnailer\\ServiceProvider
+```
+
 ## How to Use
 
 ### In your antlers templates
@@ -40,7 +49,7 @@ For example, if you have an Assets fieldtype named 'catalogs', containing some P
 
     <a href="{{ url }}">
         <img src="{{ pdf :to="thumbnail" }}">
-        
+
         <!-- or when using glide: -->
         <img src="{{ glide src=thumbnail width="200" }}">
     </a>

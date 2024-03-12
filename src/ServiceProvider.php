@@ -32,8 +32,22 @@ class ServiceProvider extends AddonServiceProvider
         __DIR__ . '/../resources/dist/js/cp.js'
     ];
 
+    public function register()
+    {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/statamic-pdf-thumbnailer.php',
+            'statamic-pdf-thumbnailer.php'
+        );
+
+        parent::register();
+    }
+
     public function bootAddon()
     {
+        $this->publishes([
+            __DIR__ . '/../config/statamic-pdf-thumbnailer.php' => config_path('statamic-pdf-thumbnailer.php'),
+        ]);
+
         $this->registerCpRoutes(function () {
             Route::post('convert-pdf/', [PdfThumbnailerController::class, 'convert']);
         });

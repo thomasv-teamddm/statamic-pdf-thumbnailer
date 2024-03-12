@@ -20,7 +20,14 @@ class PdfToImage
 
             $pdf = self::createImageFromPdf($asset->resolvedPath(), $imageFilePath, $pageNumber);
 
-            $thumbnailAsset = self::createAssetFromImage($asset->container(), $imageFilePath, $imageFileName);
+            $container = config('statamic-pdf-thumbnailer.container');
+            if (!is_null($container)) {
+                $container = AssetContainerFacade::findByHandle($container);
+            } else {
+                $container = $asset->container();
+            }
+
+            $thumbnailAsset = self::createAssetFromImage($container, $imageFilePath, $imageFileName);
 
             $asset->data([
                 'thumbnail' => $thumbnailAsset->id(),
